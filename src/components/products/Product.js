@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react"
-
 import { Link, useParams } from "react-router-dom"
 import Rating from "./rating"
+
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 export default function Product(){
 const [product, setProduct] = useState({})
@@ -19,16 +25,39 @@ useEffect(()=>{
 
   return(
     <div className="">
-      <Link to={'/products'}>назад</Link>
+      <Link to={'/products'}>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </Link>
       <div className="card d-flex flex-row">
-        <div>
-          <img className="w-50 rounded mx-auto d-block" src={imgSrc[0]}/>
-        </div>
+        {/* <div>
+          <img src={imgSrc[0]}/>
+        </div> */}
+
+        <Swiper
+          // install Swiper modules
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={100}
+          slidesPerView={3}
+          navigation
+          pagination={{ clickable: true }}
+          //scrollbar={{ draggable: true }}
+          className='w-50'
+        >
+          <SwiperSlide><img className="" src={imgSrc[0]}/></SwiperSlide>
+          <SwiperSlide><img className="" src={imgSrc[1]}/></SwiperSlide>
+          <SwiperSlide><img className="" src={imgSrc[2]}/></SwiperSlide>
+          <SwiperSlide><img className="" src={imgSrc[3]}/></SwiperSlide>
+          <SwiperSlide><img className="" src={imgSrc[4]}/></SwiperSlide>
+          <SwiperSlide><img className="" src={imgSrc[5]}/></SwiperSlide>
+        </Swiper>
+
         <div>
           <h3>{product.title}</h3>
           <p><Rating value={product.rating}/>{product.rating}</p>
-          
           <p className="font-weight-bold">${product.price}</p>
+         
           <table className="table">
             <tbody>
               <tr>
@@ -122,7 +151,26 @@ useEffect(()=>{
               
             </tbody>
           </table>
-
+          <div className="d-flex flex-row">
+            <div className="form-check">
+              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+              <label className="form-check-label" for="flexRadioDefault1">черный</label>
+            </div>
+            <div className="form-check">
+              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
+              <label className="form-check-label" for="flexRadioDefault2">белый</label>
+            </div>
+            <div className="form-check">
+              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"/>
+              <label className="form-check-label" for="flexRadioDefault3">красный </label>
+            </div>
+          </div>
+          
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <button type="button" className="btn btn-warning">купить</button>
+            <button type="button" className="btn btn-primary"><i className="bi bi-cart"></i>добавить в корзину</button>
+            <button type="button" className="btn btn-light"><i className="bi bi-heart"></i>сохранить</button>
+          </div>
   
           
         </div>
