@@ -20,7 +20,6 @@ export default function Index() {
     return (<>
             <main className='products-container'>
                 {products.map(p => <Card key={p.id} product={p}/>)}
-
             </main>
             <Pagination className='mt-5' meta={meta}/>
         </>)

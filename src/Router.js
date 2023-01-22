@@ -3,22 +3,20 @@ import {
 } from "react-router-dom";
 
 import Products from "./components/products/Index";
-import Product from "./components/products/Product";
+import View from "./components/product/View";
 
 export default createBrowserRouter([
     {
         path: "/",
-
         element: <Products/>,
     },
     {
         path: "/products",
-
         element: <Products/>,
     },
     {
         path: "/products/:id",
+        element: <View/>,
+    }
 
-        element: <Product/>,
-    },
 ]);
